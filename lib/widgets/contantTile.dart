@@ -3,12 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test_key/services/randomContactGenerator.dart';
 
 class ContactTile extends StatefulWidget {
+  final Contact contact;
+
+  const ContactTile({Key key, this.contact}) : super(key: key);
   @override
   _ContactTileState createState() => _ContactTileState();
 }
 
 class _ContactTileState extends State<ContactTile> with AutomaticKeepAliveClientMixin{
-  Contact contact = RandomContactGenerator.instance.generateRandomContact();
+  Contact contact;
+
 
   @override
   Widget build(BuildContext context) {
@@ -65,10 +69,16 @@ class _ContactTileState extends State<ContactTile> with AutomaticKeepAliveClient
 
     // TODO: implement initState
     super.initState();
+    if(widget.contact == null){
+       contact = RandomContactGenerator.instance.generateRandomContact();
+    }
+    else{
+      contact = widget.contact;
+    }
   }
 
   @override
-  // TODO: implement wantKeepAlive
+
   bool get wantKeepAlive => true;
 
 }

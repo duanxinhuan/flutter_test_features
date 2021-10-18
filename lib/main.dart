@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test_key/screens/basicWidgetDemos/stackDemo.dart';
 import 'package:flutter_test_key/services/dialogueService.dart';
 import 'package:flutter_test_key/services/navigatorService.dart';
+import 'package:flutter_test_key/services/randomContactGenerator.dart';
 import 'package:flutter_test_key/widgets/contantTile.dart';
 
 void main() {
@@ -59,6 +60,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  // first solution:
+  // List<Contact> contacts = [];
+  //
+  // @override
+  // void initState() {
+  //   for (int i=0; i<50; i++){
+  //     contacts.add(RandomContactGenerator.instance.generateRandomContact());
+  //   }
+  //
+  //   super.initState();
+  // }
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -74,18 +87,13 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: ListView.builder(
-
+      // itemCount: contacts.length,
       itemCount: 50,
       controller: ScrollController(),
       itemBuilder: (BuildContext context, int index){
 
-        // if(widget.contextList.length>index+1){
-        //     context = widget.contextList[index];
-        //     print('called');
-        //     return ContactTile();
-        // }
-        // widget.contextList.add(context);
-        // print(widget.contextList.length);
+
+        // return ContactTile(contact: contacts[index] );
         return ContactTile();
       }
       ),
